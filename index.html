@@ -6,6 +6,7 @@
     <title>Nine Paws - Space Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --retro-green: #3dfc3d;
@@ -14,18 +15,21 @@
         }
 
         body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             background-color: #000;
             font-family: 'Press Start 2P', cursive;
             overflow: hidden;
             color: var(--retro-green);
         }
 
-        /* Header de Navegación Directa */
         .main-nav-header {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 60px;
             background: rgba(0, 10, 0, 0.9);
             border-bottom: 2px solid var(--retro-green);
@@ -52,17 +56,18 @@
             color: #fff;
         }
 
-        /* Espacio de fondo */
         .stars-bg {
             position: fixed;
             inset: 0;
             background: radial-gradient(circle at center, #0a150a 0%, #000 100%);
             z-index: 1;
         }
+
         .stars-bg::after {
             content: "";
             position: absolute;
-            width: 2px; height: 2px;
+            width: 2px;
+            height: 2px;
             background: white;
             box-shadow: 10vw 20vh white, 50vw 40vh white, 80vw 10vh white, 20vw 80vh white, 70vw 70vh white;
             animation: moveStars 100s linear infinite;
@@ -73,7 +78,6 @@
             to { transform: translateY(-100vh); }
         }
 
-        /* Estructura de la Nave (Ajustada para el Header) */
         .cockpit-structure {
             position: absolute;
             inset: 0;
@@ -92,19 +96,45 @@
             border: 2px solid #333;
         }
 
-        .hull-top { top: 60px; width: 45%; height: 50px; clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); }
-        .hull-bottom { bottom: 0; width: 70%; height: 80px; clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%); }
-        .hull-diag-tl { top: 60px; left: 0; width: 35%; height: 40px; transform: rotate(20deg); transform-origin: top left; }
-        .hull-diag-tr { top: 60px; right: 0; width: 35%; height: 40px; transform: rotate(-20deg); transform-origin: top right; }
+        .hull-top {
+            top: 60px;
+            width: 45%;
+            height: 50px;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+        }
 
-        /* Consola */
+        .hull-bottom {
+            bottom: 0;
+            width: 70%;
+            height: 80px;
+            clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+        }
+
+        .hull-diag-tl {
+            top: 60px;
+            left: 0;
+            width: 35%;
+            height: 40px;
+            transform: rotate(20deg);
+            transform-origin: top left;
+        }
+
+        .hull-diag-tr {
+            top: 60px;
+            right: 0;
+            width: 35%;
+            height: 40px;
+            transform: rotate(-20deg);
+            transform-origin: top right;
+        }
+
         .console-hub {
             position: relative;
             z-index: 10;
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-areas: 
+            grid-template-areas:
                 "bio main stats"
                 "left bottom right";
             grid-template-columns: 1.2fr 2fr 1.2fr;
@@ -134,10 +164,30 @@
             transform: perspective(600px) rotateX(2deg);
         }
 
-        .screen-bio { grid-area: bio; height: 180px; transform: perspective(600px) rotateY(15deg) translateY(-20px); }
-        .screen-stats { grid-area: stats; height: 180px; transform: perspective(600px) rotateY(-15deg) translateY(-20px); }
-        .screen-left { grid-area: left; height: 160px; transform: perspective(600px) rotateY(25deg); }
-        .screen-right { grid-area: right; height: 160px; transform: perspective(600px) rotateY(-25deg); }
+        .screen-bio {
+            grid-area: bio;
+            height: 180px;
+            transform: perspective(600px) rotateY(15deg) translateY(-20px);
+        }
+
+        .screen-stats {
+            grid-area: stats;
+            height: 180px;
+            transform: perspective(600px) rotateY(-15deg) translateY(-20px);
+        }
+
+        .screen-left {
+            grid-area: left;
+            height: 160px;
+            transform: perspective(600px) rotateY(25deg);
+        }
+
+        .screen-right {
+            grid-area: right;
+            height: 160px;
+            transform: perspective(600px) rotateY(-25deg);
+        }
+
         .screen-bottom {
             grid-area: bottom;
             height: 120px;
@@ -159,16 +209,26 @@
         }
 
         video {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: sepia(100%) hue-rotate(90deg) brightness(0.9) contrast(1.2);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            filter: none;
         }
 
-        /* Vista de Juego */
-        #game-view { display: none; position: fixed; inset: 0; z-index: 100; background: #000; }
-        #gameCanvas { background: #000; cursor: crosshair; }
+        #game-view {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #000;
+        }
 
-        /* UI de Vuelo */
+        #gameCanvas {
+            background: #000;
+            cursor: crosshair;
+        }
+
         #flight-ui {
             position: absolute;
             top: 80px;
@@ -188,14 +248,15 @@
             text-shadow: 0 0 5px var(--retro-green);
         }
 
-        /* Modales */
         .modal {
             display: none;
             position: fixed;
-            top: 50%; left: 50%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2500;
-            width: 90%; max-width: 500px;
+            width: 90%;
+            max-width: 500px;
             background: #051005;
             border: 4px solid var(--retro-green);
             padding: 20px;
@@ -214,7 +275,11 @@
             text-decoration: none;
             border: none;
         }
-        .modal-btn:hover { background: #fff; transform: scale(1.05); }
+
+        .modal-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
 
         .contact-input {
             background: #000;
@@ -228,31 +293,266 @@
             outline: none;
         }
 
-        /* Lista de Proyectos Directa */
-        .project-direct-item {
-            border: 1px solid #1a331a;
-            padding: 12px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
+        #project-list-modal {
+            max-width: 1050px;
+            width: 90%;
+            max-height: 82vh;
+            overflow: hidden;
         }
+
+        #project-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .project-direct-item {
+            border: 2px solid #1a331a;
+            background: #020802;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+            min-height: 210px;
+            display: flex;
+            flex-direction: column;
+        }
+
         .project-direct-item:hover {
-            background: rgba(61, 252, 61, 0.1);
+            background: rgba(61, 252, 61, 0.08);
             border-color: var(--retro-green);
+            box-shadow: 0 0 20px rgba(61, 252, 61, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .project-card-image {
+            width: 100%;
+            height: 135px;
+            background: #000;
+            border-bottom: 1px solid #1a331a;
+            overflow: hidden;
+        }
+
+        .project-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-card-placeholder {
+            height: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7px;
+            color: var(--retro-green);
+            background: #000;
+        }
+
+        .project-card-info {
+            padding: 14px;
+        }
+
+        .project-card-title {
+            color: white;
+            font-size: 9px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .project-card-meta {
+            font-size: 6px;
+            opacity: 0.75;
+            line-height: 1.6;
+        }
+
+        .project-card-open {
+            margin-top: 10px;
+            font-size: 7px;
+            color: var(--retro-green);
+            text-align: right;
+        }
+
+        /* Modal de proyecto grande - Vista tipo ficha */
+        .project-modal-layout {
+            width: 94%;
+            max-width: 1250px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 26px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.25fr;
+            gap: 26px;
+            align-items: stretch;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 16px;
+            min-height: 100%;
+        }
+
+        .project-title {
+            color: white;
+            font-size: 16px;
+            margin: 0;
+            text-transform: uppercase;
+            line-height: 1.4;
+            border-bottom: 2px solid var(--retro-green);
+            padding-bottom: 12px;
+            text-shadow: 0 0 8px rgba(61, 252, 61, 0.45);
+        }
+
+        .project-desc {
+            display: grid;
+            gap: 14px;
+            margin: 0;
+        }
+
+        .project-summary-card {
+            border: 1px solid #1a331a;
+            background: rgba(0, 20, 0, 0.55);
+            padding: 14px;
+            box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.55);
+        }
+
+        .project-summary-label {
+            color: white;
+            font-size: 7px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .project-summary-text {
+            font-size: 7px;
+            line-height: 1.8;
+            color: var(--retro-green);
+        }
+
+        .project-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .project-stat-card {
+            border: 1px solid #1a331a;
+            background: #020802;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--retro-green);
+            opacity: 0.85;
+        }
+
+        .project-stat-label {
+            color: white;
+            font-size: 6px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            padding-left: 8px;
+        }
+
+        .project-stat-value {
+            color: var(--retro-green);
+            font-size: 7px;
+            line-height: 1.6;
+            padding-left: 8px;
+        }
+
+        .project-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .project-media-column {
+            display: grid;
+            grid-template-rows: 0.9fr 1.1fr;
+            gap: 18px;
+        }
+
+        .project-image-frame {
+            width: 100%;
+            min-height: 270px;
+            background: #000;
+            border: 2px solid var(--retro-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .project-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project-video-frame {
+            width: 100%;
+            min-height: 310px;
+            background: #000;
+            border: 2px solid #1a331a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-video-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: none;
+        }
+
+        .project-video-empty {
+            font-size: 7px;
+            color: #1f8f1f;
+            text-align: center;
         }
 
         .crt-overlay {
-            position: fixed; inset: 0; pointer-events: none; z-index: 1000;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1000;
+            background:
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
             background-size: 100% 2px, 2px 100%;
         }
 
-        .glitch-text { animation: blink 1.2s step-end infinite; }
-        @keyframes blink { 50% { opacity: 0.2; } }
+        .glitch-text {
+            animation: blink 1.2s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.2; }
+        }
 
         .typewriter {
             overflow: hidden;
@@ -270,22 +570,29 @@
             padding-right: 6px;
         }
 
-        /* Scrollbar retro */
-        .bio-scroll::-webkit-scrollbar {
+        .bio-scroll::-webkit-scrollbar,
+        #project-container::-webkit-scrollbar,
+        .project-modal-layout::-webkit-scrollbar {
             width: 8px;
         }
 
-        .bio-scroll::-webkit-scrollbar-track {
+        .bio-scroll::-webkit-scrollbar-track,
+        #project-container::-webkit-scrollbar-track,
+        .project-modal-layout::-webkit-scrollbar-track {
             background: #001000;
             border-left: 1px solid #1a331a;
         }
 
-        .bio-scroll::-webkit-scrollbar-thumb {
+        .bio-scroll::-webkit-scrollbar-thumb,
+        #project-container::-webkit-scrollbar-thumb,
+        .project-modal-layout::-webkit-scrollbar-thumb {
             background: var(--retro-green);
             border: 1px solid #000;
         }
 
-        .bio-scroll {
+        .bio-scroll,
+        #project-container,
+        .project-modal-layout {
             scrollbar-width: thin;
             scrollbar-color: var(--retro-green) #001000;
         }
@@ -306,78 +613,6 @@
             height: 100%;
             object-fit: contain;
             filter: brightness(0) saturate(100%) invert(72%) sepia(98%) saturate(748%) hue-rotate(66deg) brightness(105%) contrast(105%);
-        }
-
-        .project-modal-layout {
-            width: 90%;
-            max-width: 900px;
-            padding: 24px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .project-info {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .project-title {
-            color: white;
-            font-size: 12px;
-            margin: 0 0 18px 0;
-            text-transform: uppercase;
-            line-height: 1.4;
-        }
-
-        .project-desc {
-            font-size: 7px;
-            line-height: 1.8;
-            margin-bottom: 24px;
-            color: var(--retro-green);
-            flex-grow: 1;
-        }
-
-        .project-actions {
-            display: flex;
-            gap: 14px;
-            margin-top: auto;
-        }
-
-        .project-image-frame {
-            width: 100%;
-            aspect-ratio: 315 / 250;
-            background: #000;
-            border: 2px solid var(--retro-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        .project-image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-actions {
-                flex-direction: column;
-            }
         }
 
         .social-link {
@@ -403,15 +638,66 @@
             height: 16px;
             flex-shrink: 0;
         }
-        
+
+        @media (max-width: 900px) {
+            .console-hub {
+                grid-template-areas:
+                    "main"
+                    "bio"
+                    "stats"
+                    "left"
+                    "right"
+                    "bottom";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                overflow-y: auto;
+                padding-top: 80px;
+            }
+
+            .screen-main,
+            .screen-bio,
+            .screen-stats,
+            .screen-left,
+            .screen-right,
+            .screen-bottom {
+                transform: none;
+                width: 100%;
+                max-width: none;
+            }
+
+            #project-container {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-media-column {
+                grid-template-rows: auto auto;
+            }
+
+            .project-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .main-nav-header {
+                padding: 0 12px;
+            }
+
+            .nav-link {
+                font-size: 6px;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
 <div class="stars-bg"></div>
 <div class="crt-overlay"></div>
 
-<!-- HEADER DE NAVEGACIÓN -->
 <header class="main-nav-header">
     <div class="flex items-center gap-4">
         <div class="logo-box">
@@ -419,15 +705,16 @@
         </div>
         <span class="text-[8px] hidden md:block">KENNETH GALVEZ</span>
     </div>
+
     <nav class="flex gap-2">
         <div class="nav-link" onclick="handleNav('inicio')">INICIO</div>
         <div class="nav-link" onclick="handleNav('proyectos')">PROYECTOS</div>
         <div class="nav-link" onclick="handleNav('contacto')">CONTACTO</div>
     </nav>
+
     <div class="text-[6px] opacity-40 hidden md:block">STATUS: ONLINE</div>
 </header>
 
-<!-- MARCOS DE LA NAVE -->
 <div class="cockpit-structure">
     <div class="hull-frame hull-top"></div>
     <div class="hull-frame hull-bottom"></div>
@@ -435,13 +722,18 @@
     <div class="hull-frame hull-diag-tr"></div>
 </div>
 
-<!-- INTERFAZ DE CABINA -->
 <div id="cockpit-ui">
     <div class="console-hub">
+
         <div class="screen screen-bio">
-            <div class="screen-header"><span>SOBRE_MI.LOG</span><span>v1.0.4</span></div>
+            <div class="screen-header">
+                <span>SOBRE_MI.LOG</span>
+                <span>v1.0.4</span>
+            </div>
+
             <div class="p-3">
                 <p class="text-white mb-2 underline text-[7px]">BIO_PILOTO</p>
+
                 <div class="bio-scroll">
                     <div class="typewriter">
                         Soy Kenneth Eduardo Gálvez Requena, Game Designer y Game Developer. Actualmente estoy estudiando una maestría en Game Design en Universal Arts School.
@@ -453,38 +745,68 @@
         </div>
 
         <div class="screen screen-main">
-            <div class="screen-header"><span>PROYECTOS_CAM_01</span><span>REC ●</span></div>
+            <div class="screen-header">
+                <span>PROYECTOS_CAM_01</span>
+                <span>REC ●</span>
+            </div>
+
             <video id="main-video" autoplay loop muted playsinline>
                 <source src="ResumenJuegos.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="screen screen-stats">
-            <div class="screen-header"><span>SISTEMAS</span><span>LOG_SYNC</span></div>
+            <div class="screen-header">
+                <span>SISTEMAS</span>
+                <span>LOG_SYNC</span>
+            </div>
+
             <div class="p-3 text-[7px]">
                 <p class="mb-2">CAPACIDADES:</p>
+
                 <div class="space-y-1">
-                    <div class="flex justify-between"><span>STORYTELLING</span><span class="text-white">95%</span></div>
-                    <div class="h-1 bg-green-900"><div class="h-full bg-green-400 w-[95%]"></div></div>
-                    <div class="flex justify-between"><span>UNITY</span><span class="text-white">88%</span></div>
-                    <div class="h-1 bg-green-900"><div class="h-full bg-green-400 w-[88%]"></div></div>
-                    <div class="flex justify-between"><span>GAMEMAKER</span><span class="text-white">70%</span></div>
-                    <div class="h-1 bg-green-900"><div class="h-full bg-green-400 w-[70%]"></div></div>
+                    <div class="flex justify-between">
+                        <span>STORYTELLING</span>
+                        <span class="text-white">95%</span>
+                    </div>
+                    <div class="h-1 bg-green-900">
+                        <div class="h-full bg-green-400 w-[95%]"></div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>UNITY</span>
+                        <span class="text-white">88%</span>
+                    </div>
+                    <div class="h-1 bg-green-900">
+                        <div class="h-full bg-green-400 w-[88%]"></div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>GAMEMAKER</span>
+                        <span class="text-white">70%</span>
+                    </div>
+                    <div class="h-1 bg-green-900">
+                        <div class="h-full bg-green-400 w-[70%]"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="screen screen-left">
-            <div class="screen-header"><span>STATUS_ID</span></div>
+            <div class="screen-header">
+                <span>STATUS_ID</span>
+            </div>
+
             <div class="p-3 text-[7px]">
                 <p class="text-white">NINE PAWS STUDIO</p>
-                <p class="mt-2 text-green-700">Creatividad, diversión, inmersión, narrativa, desafío, identidad, pulido, innovación e impacto</p>
-                <p class="mt-1">Nueve cualidades, crea una experiencia.</p>
             </div>
         </div>
 
         <div class="screen screen-right">
-            <div class="screen-header"><span>RADAR_SCAN</span></div>
+            <div class="screen-header">
+                <span>RADAR_SCAN</span>
+            </div>
+
             <div class="flex items-center justify-center h-full">
                 <div class="w-16 h-16 rounded-full border border-green-900 relative">
                     <div class="absolute inset-0 border-t border-green-400 rounded-full animate-spin"></div>
@@ -497,17 +819,19 @@
             <p class="text-[7px] mb-2 opacity-50">MOTOR DE HIPERSALTO CARGADO</p>
             <h2 class="glitch-text text-[10px] text-white tracking-widest">PRESIONA [ESPACIO] PARA VOLAR</h2>
         </div>
+
     </div>
 </div>
 
-<!-- MODO JUEGO -->
 <div id="game-view">
     <canvas id="gameCanvas"></canvas>
+
     <div id="flight-ui">
         <div class="ui-tag">
             <span>NAV_POS: </span>
             <span id="pos-display" class="text-white">X: 2750 Y: 2750</span>
         </div>
+
         <div class="ui-tag">
             <span>VESSEL: </span>
             <span class="text-white">REINDEER_v1.2</span>
@@ -515,35 +839,52 @@
     </div>
 </div>
 
-<!-- MODAL LISTA DE PROYECTOS (Directo) -->
 <div id="project-list-modal" class="modal">
-    <h2 class="text-white text-[12px] mb-4 uppercase border-b border-green-400 pb-2">ARCHIVO_PROYECTOS</h2>
-    <div id="project-container" class="max-h-60 overflow-y-auto pr-2 custom-scroll">
-        <!-- Generado por JS -->
-    </div>
-    <button onclick="closeModals()" class="modal-btn w-full mt-4 !bg-transparent !text-green-400 border border-green-400">CERRAR</button>
+    <h2 class="text-white text-[12px] mb-4 uppercase border-b border-green-400 pb-2">
+        ARCHIVO_PROYECTOS
+    </h2>
+
+    <div id="project-container"></div>
+
+    <button onclick="closeModals()" class="modal-btn w-full mt-4 !bg-transparent !text-green-400 border border-green-400">
+        CERRAR
+    </button>
 </div>
 
-<!-- MODAL DETALLE PROYECTO -->
 <div id="project-modal" class="modal project-modal-layout">
     <div class="project-grid">
+
         <div class="project-info">
             <h2 id="p-title" class="project-title">NOMBRE DEL PROYECTO</h2>
-            <p id="p-desc" class="project-desc">Cargando bitácora de desarrollo...</p>
+
+            <div id="p-desc" class="project-desc">
+                Cargando bitácora de desarrollo...
+            </div>
 
             <div class="project-actions">
-                <a id="p-link" href="#" target="_blank" class="modal-btn flex-1">IR AL PROYECTO</a>
-                <button onclick="backToProjectList()" class="modal-btn flex-1 !bg-transparent !text-green-400 border border-green-400">VOLVER</button>
+                <a id="p-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn">
+                    IR AL PROYECTO
+                </a>
+
+                <button onclick="backToProjectList()" class="modal-btn !bg-transparent !text-green-400 border border-green-400">
+                    VOLVER
+                </button>
             </div>
         </div>
 
-        <div id="p-image" class="project-image-frame">
-            <span class="text-[8px] text-green-400">[DATOS DEL PROYECTO]</span>
+        <div class="project-media-column">
+            <div id="p-image" class="project-image-frame">
+                <span class="text-[8px] text-green-400">[IMAGEN DEL PROYECTO]</span>
+            </div>
+
+            <div id="p-video" class="project-video-frame">
+                <span class="project-video-empty">[VIDEO DEL PROYECTO]</span>
+            </div>
         </div>
+
     </div>
 </div>
 
-<!-- MODAL CONTACTO -->
 <div id="contact-modal" class="modal">
     <h2 class="text-white text-[12px] mb-4 uppercase">ESTACIÓN DE RADIO</h2>
     <p class="text-[6px] mb-4 text-green-600">CANAL ABIERTO // FRECUENCIA: 144.900MHz</p>
@@ -556,16 +897,18 @@
 
     <div class="flex gap-4 mb-4">
         <button class="modal-btn flex-1" onclick="sendContactEmail()">ENVIAR</button>
-        <button onclick="closeModals()" class="modal-btn flex-1 !bg-transparent !text-green-400 border border-green-400">CERRAR</button>
+        <button onclick="closeModals()" class="modal-btn flex-1 !bg-transparent !text-green-400 border border-green-400">
+            CERRAR
+        </button>
     </div>
 
     <div class="border-t border-green-900 pt-4">
         <p class="text-[7px] mb-3 text-white">ENLACES_EXTERNOS</p>
 
         <div class="flex gap-3">
-            <a 
-                href="https://www.linkedin.com/in/kenneth-galvez-49259b1a0/" 
-                target="_blank" 
+            <a
+                href="https://www.linkedin.com/in/kenneth-galvez-49259b1a0/"
+                target="_blank"
                 rel="noopener noreferrer"
                 class="social-link"
                 aria-label="LinkedIn"
@@ -577,9 +920,9 @@
                 <span class="text-[7px]">LINKEDIN</span>
             </a>
 
-            <a 
-                href="https://github.com/KennethGalvez" 
-                target="_blank" 
+            <a
+                href="https://github.com/KennethGalvez"
+                target="_blank"
                 rel="noopener noreferrer"
                 class="social-link"
                 aria-label="GitHub"
@@ -598,7 +941,7 @@
     window.onload = function() {
         const video = document.getElementById('main-video');
         if (video) video.play().catch(() => {});
-    }
+    };
 
     const cockpit = document.getElementById('cockpit-ui');
     const gameView = document.getElementById('game-view');
@@ -612,72 +955,96 @@
     let gameActive = false;
     let modalOpen = false;
     let collisionCooldown = 0;
+
     const WORLD_SIZE = 5500;
-    
-    const player = { 
-        x: WORLD_SIZE / 2, y: WORLD_SIZE / 2, 
-        vx: 0, vy: 0, angle: 0, 
-        speed: 0.35, friction: 0.96, maxSpeed: 10
+
+    const player = {
+        x: WORLD_SIZE / 2,
+        y: WORLD_SIZE / 2,
+        vx: 0,
+        vy: 0,
+        angle: 0,
+        speed: 0.35,
+        friction: 0.96,
+        maxSpeed: 10
     };
 
     const radioStation = {
         x: WORLD_SIZE / 2 + 1000,
         y: WORLD_SIZE / 2 - 800,
-        size: 70, rot: 0, pulse: 0
+        size: 70,
+        rot: 0,
+        pulse: 0
     };
 
     const projectData = [
-        { 
-            name: "Potassium Shot", 
-            color: "#2d5a27", 
-            size: 90, 
+        {
+            name: "Potassium Shot",
+            color: "#2d5a27",
+            size: 90,
             desc: "Un empresario millonario ha comenzado a deforestar la selva para explotar todos los recursos naturales a su alcance. El jugador controla a un mono que, al presenciar la destrucción de su hogar, decide defenderlo usando su mejor habilidad: lanzar bananas contra todo aquel que amenace su territorio.",
             tools: "Unity / PC",
             role: "Game Developer / Game Designer",
             genre: "Shooter / Acción",
-            disclaimer: "Este proyecto incluye algunos assets de terceros utilizados bajo sus respectivas licencias.",
-            link: "https://kenneth910.itch.io/potassium-shot", 
+            link: "https://kenneth910.itch.io/potassium-shot",
             details: 6,
-            image: "potassium_shot.png"
+            image: "potassium_shot.png",
+            video: "potassium_shot.mp4"
         },
-        { 
-            name: "Eco de Acero", 
-            color: "#5a2d27", 
-            size: 140, 
-            rings: true, 
+        {
+            name: "Eco de Acero",
+            color: "#5a2d27",
+            size: 140,
+            rings: true,
             desc: "En un mundo helado donde la naturaleza y la tecnología chocan por sobrevivir, un accidente transforma a Shizul en un ser con partes robóticas. Ahora deberá enfrentarse a su nueva identidad y escalar hacia el misterio de una piedra capaz de cambiar el destino de su mundo.",
             tools: "Unity / PC",
             role: "Game Developer / Game Designer",
             genre: "Aventura narrativa / Plataformas / Puzzle",
-            link: "https://kenneth910.itch.io/eco-de-acero", 
+            link: "https://kenneth910.itch.io/eco-de-acero",
             details: 9,
-            image: "eco_de_acero.png"
+            image: "eco_de_acero.png",
+            video: "eco_de_acero.mp4"
         },
-        { 
-            name: "Guamazo Libre", 
-            color: "#27485a", 
-            size: 80, 
+        {
+            name: "Guamazo Libre",
+            color: "#27485a",
+            size: 80,
             desc: "Lo peor que pudiste haber hecho fue dejar plantada a tu traída. Ahora, secuestrado por tu suegro marero, deberás luchar por tu vida. Sumérgete en las profundidades de la Zona 18 de la Ciudad de Guatemala y demuestra qué tan chispudo eres.",
             tools: "Unity / PC",
             role: "Game Designer",
             genre: "Arcade / Button Masher",
-            link: "https://borza.itch.io/guamazo-libre", 
+            link: "https://borza.itch.io/guamazo-libre",
             details: 4,
-            image: "guamazo_libre.png"
+            image: "guamazo_libre.png",
+            video: "guamazo_libre.mp4"
         },
-        { 
-            name: "Sueño de Pirata", 
-            color: "#48275a", 
-            size: 100, 
-            rings: true, 
+        {
+            name: "Sueño de Pirata",
+            color: "#48275a",
+            size: 100,
+            rings: true,
             desc: "Tae es un niño huérfano nacido en la isla de Everly. Trabaja en un huerto por una paga miserable, intentando ayudar a su familia adoptiva. Desde siempre ha soñado con abandonar la isla en busca de una vida mejor, inspirado por los barcos que parten del puerto. Su oportunidad aparece cuando una banda de piratas ataca inesperadamente.",
             tools: "GameMaker / PC",
             role: "Game Developer / Game Designer",
             genre: "Bullet Hell / Acción",
-            disclaimer: "Este proyecto incluye algunos assets de terceros utilizados bajo sus respectivas licencias.",
-            link: "https://kenneth910.itch.io/sueo-de-pirata", 
+            link: "https://kenneth910.itch.io/sueo-de-pirata",
             details: 7,
-            image: "sueño_de_pirata.png"
+            image: "sueño_de_pirata.png",
+            video: "sueño_de_pirata.mp4"
+        },
+        {
+            name: "Swapper",
+            color: "#3d2d5a",
+            size: 115,
+            rings: true,
+            desc: "Es el año 2050, el planeta Tierra se encuentra en una crisis de recursos como nunca antes se había visto. El gobierno de varios países, ante esta situación, apostó todo por el proyecto Swappers: una iniciativa que consiste en desarrollar y financiar un arca espacial capaz de transportar a miles de personas hacia un sitio donde la vida pueda prosperar. Todo iba de acuerdo con lo planeado; el único inconveniente era la cantidad de personas que tendrían la oportunidad de abordar. Siguiendo el protocolo y con el fin de evitar el caos, se decidió retener a un puñado de personas para evaluar y clasificar sus capacidades y determinar su futuro.",
+            tools: "Unity / PC",
+            role: "Game Developer / Game Designer",
+            genre: "Puzzle Narrativa",
+            link: "https://kenneth910.itch.io/swappers",
+            details: 8,
+            image: "swapper.png",
+            video: "swapper.mp4"
         }
     ];
 
@@ -687,8 +1054,6 @@
     const asteroids = [];
     const keys = {};
     const shootingStars = [];
-
-    // --- NAVEGACIÓN DIRECTA ---
 
     function handleNav(option) {
         if (option === 'inicio') {
@@ -702,6 +1067,7 @@
 
     function goHome() {
         closeModals();
+
         gameActive = false;
         gameView.style.display = 'none';
         cockpit.style.display = 'block';
@@ -711,21 +1077,38 @@
     function showProjectListDirectly() {
         closeModals();
         modalOpen = true;
+
         const container = document.getElementById('project-container');
         container.innerHTML = '';
+
         projectData.forEach(p => {
             const el = document.createElement('div');
             el.className = 'project-direct-item';
+
             el.innerHTML = `
-                <div>
-                    <div class="text-[8px] text-white uppercase">${p.name}</div>
-                    <div class="text-[6px] opacity-60 mt-1">LOG_DATA: OK</div>
+                <div class="project-card-image">
+                    ${
+                        p.image
+                        ? `<img src="${p.image}" alt="${p.name}">`
+                        : `<div class="project-card-placeholder">[SIN IMAGEN]</div>`
+                    }
                 </div>
-                <div class="text-[7px] text-green-400">ABRIR ></div>
+
+                <div class="project-card-info">
+                    <div class="project-card-title">${p.name}</div>
+                    <div class="project-card-meta">
+                        SISTEMA: ${p.tools}<br>
+                        CLASE: ${p.genre}<br>
+                        STATUS: READY
+                    </div>
+                    <div class="project-card-open">ABRIR ></div>
+                </div>
             `;
+
             el.onclick = () => showProject(p);
             container.appendChild(el);
         });
+
         projectListModal.style.display = 'block';
     }
 
@@ -745,15 +1128,16 @@
 
         const fullSubject = `Contacto Portfolio - ${subject}`;
         const body = `Correo de contacto: ${from}\n\nMensaje:\n${message}`;
-
         const mailtoLink = `mailto:kenichi.galvez@gmail.com?subject=${encodeURIComponent(fullSubject)}&body=${encodeURIComponent(body)}`;
 
         window.location.href = mailtoLink;
     }
 
     function backToProjectList() {
+        stopProjectVideo();
+
         projectModal.style.display = 'none';
-        // Si no estamos jugando, asumimos que vinimos del menú directo
+
         if (!gameActive) {
             projectListModal.style.display = 'block';
         } else {
@@ -762,46 +1146,60 @@
         }
     }
 
+    function stopProjectVideo() {
+        const videoContainer = document.getElementById('p-video');
+        const video = videoContainer.querySelector('video');
+
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+
     function spawnShootingStar() {
-        // Aparece en una zona visible relativa a la cámara
         const startX = camera.x + Math.random() * canvas.width;
         const startY = camera.y - 100;
 
         shootingStars.push({
             x: startX,
             y: startY,
-            vx: -6 - Math.random() * 4,   // diagonal
+            vx: -6 - Math.random() * 4,
             vy: 6 + Math.random() * 4,
             length: 60 + Math.random() * 40,
             life: 50 + Math.random() * 20
         });
     }
 
-    // --- LÓGICA DEL JUEGO ---
-
     function initGalaxy() {
-        if (stars.length > 0) return; // Ya inicializada
-        for(let i=0; i<1500; i++) {
+        if (stars.length > 0) return;
+
+        for (let i = 0; i < 1500; i++) {
             stars.push({
-                x: Math.random() * WORLD_SIZE, y: Math.random() * WORLD_SIZE,
-                size: Math.random() * 2 + 0.5, 
+                x: Math.random() * WORLD_SIZE,
+                y: Math.random() * WORLD_SIZE,
+                size: Math.random() * 2 + 0.5,
                 opacity: Math.random(),
                 blinkSpeed: 0.01 + Math.random() * 0.05,
                 phase: Math.random() * Math.PI * 2
             });
         }
-        for(let i=0; i<60; i++) {
+
+        for (let i = 0; i < 60; i++) {
             asteroids.push({
-                x: Math.random() * WORLD_SIZE, y: Math.random() * WORLD_SIZE,
+                x: Math.random() * WORLD_SIZE,
+                y: Math.random() * WORLD_SIZE,
                 size: 15 + Math.random() * 30,
-                vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
-                rot: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - 0.5) * 0.02,
-                points: Array.from({length: 8}, (_, j) => ({
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                rot: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.02,
+                points: Array.from({ length: 8 }, (_, j) => ({
                     x: Math.cos(j * Math.PI * 0.25) * (0.8 + Math.random() * 0.4),
                     y: Math.sin(j * Math.PI * 0.25) * (0.8 + Math.random() * 0.4)
                 }))
             });
         }
+
         projectData.forEach(p => {
             planets.push({
                 ...p,
@@ -809,7 +1207,7 @@
                 y: 1000 + Math.random() * (WORLD_SIZE - 2000),
                 rotation: Math.random() * Math.PI * 2,
                 rotationSpeed: 0.005 + Math.random() * 0.01,
-                internalSpots: Array.from({length: p.details || 5}, () => ({
+                internalSpots: Array.from({ length: p.details || 5 }, () => ({
                     x: (Math.random() - 0.5) * 1.5,
                     y: (Math.random() - 0.5) * 1.5,
                     r: 0.15 + Math.random() * 0.35
@@ -820,17 +1218,23 @@
 
     window.addEventListener('keydown', e => {
         keys[e.code] = true;
+
         if (e.code === 'Space' && !gameActive && !modalOpen) {
             cockpit.style.display = 'none';
             document.querySelector('.cockpit-structure').style.display = 'none';
             gameView.style.display = 'block';
+
             gameActive = true;
+
             resize();
             initGalaxy();
             gameLoop();
         }
     });
-    window.addEventListener('keyup', e => keys[e.code] = false);
+
+    window.addEventListener('keyup', e => {
+        keys[e.code] = false;
+    });
 
     function resize() {
         canvas.width = window.innerWidth;
@@ -838,56 +1242,90 @@
     }
 
     function showProject(p) {
-        if(collisionCooldown > 0 && gameActive) return;
+        if (collisionCooldown > 0 && gameActive) return;
 
-        modalOpen = true; 
-        if(gameActive) { 
-            player.vx = 0; 
-            player.vy = 0; 
+        modalOpen = true;
+
+        if (gameActive) {
+            player.vx = 0;
+            player.vy = 0;
         }
 
         document.getElementById('p-title').innerText = p.name;
+
         document.getElementById('p-desc').innerHTML = `
-            <span class="text-white">Descripción:</span><br>
-            ${p.desc}<br><br>
+            <div class="project-summary-card">
+                <div class="project-summary-label">Descripción:</div>
+                <div class="project-summary-text">${p.desc}</div>
+            </div>
 
-            <span class="text-white">Herramientas:</span><br>
-            ${p.tools}<br><br>
+            <div class="project-stats-grid">
+                <div class="project-stat-card">
+                    <div class="project-stat-label">Herramientas:</div>
+                    <div class="project-stat-value">${p.tools}</div>
+                </div>
 
-            <span class="text-white">Rol en el proyecto:</span><br>
-            ${p.role}<br><br>
+                <div class="project-stat-card">
+                    <div class="project-stat-label">Rol en el proyecto:</div>
+                    <div class="project-stat-value">${p.role}</div>
+                </div>
 
-            <span class="text-white">Género:</span><br>
-            ${p.genre}
-            ${p.disclaimer ? `<br><br><span class="text-white">Nota:</span><br>${p.disclaimer}` : ""}
+                <div class="project-stat-card">
+                    <div class="project-stat-label">Género:</div>
+                    <div class="project-stat-value">${p.genre}</div>
+                </div>
+            </div>
         `;
+
         document.getElementById('p-link').href = p.link;
 
         const imageContainer = document.getElementById('p-image');
         imageContainer.innerHTML = p.image
-            ? `<img src="${p.image}" alt="${p.name}" class="max-w-full max-h-full object-contain">`
+            ? `<img src="${p.image}" alt="${p.name}">`
             : `<span class="text-[8px] text-green-400">[SIN IMAGEN]</span>`;
+
+        const videoContainer = document.getElementById('p-video');
+        videoContainer.innerHTML = p.video
+            ? `
+                <video controls muted playsinline>
+                    <source src="${p.video}" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            `
+            : `<span class="project-video-empty">[SIN VIDEO DISPONIBLE]</span>`;
 
         projectListModal.style.display = 'none';
         projectModal.style.display = 'block';
     }
 
     function showContact() {
-        if(modalOpen || (collisionCooldown > 0 && gameActive)) return;
-        modalOpen = true; 
-        if(gameActive) { player.vx = 0; player.vy = 0; }
+        if (modalOpen || (collisionCooldown > 0 && gameActive)) return;
+
+        modalOpen = true;
+
+        if (gameActive) {
+            player.vx = 0;
+            player.vy = 0;
+        }
+
         contactModal.style.display = 'block';
     }
 
     function closeModals() {
+        stopProjectVideo();
+
         projectModal.style.display = 'none';
         projectListModal.style.display = 'none';
         contactModal.style.display = 'none';
+
         modalOpen = false;
-        if(gameActive) {
+
+        if (gameActive) {
             const pushDist = 250;
+
             player.x += Math.sin(player.angle) * pushDist;
             player.y -= Math.cos(player.angle) * pushDist;
+
             collisionCooldown = 120;
         }
     }
@@ -895,90 +1333,213 @@
     function drawRadioStation() {
         const sx = radioStation.x - camera.x;
         const sy = radioStation.y - camera.y;
-        const dist = Math.sqrt((player.x - radioStation.x)**2 + (player.y - radioStation.y)**2);
-        if (gameActive && dist < radioStation.size + 40) showContact();
+        const dist = Math.sqrt((player.x - radioStation.x) ** 2 + (player.y - radioStation.y) ** 2);
 
-        ctx.save(); ctx.translate(sx, sy);
-        radioStation.rot += 0.005; ctx.rotate(radioStation.rot);
-        ctx.fillStyle = "#222"; ctx.strokeStyle = "#3dfc3d"; ctx.lineWidth = 2;
-        ctx.fillRect(-60, -5, 120, 10); ctx.strokeRect(-60, -5, 120, 10);
-        ctx.beginPath(); ctx.arc(0, 0, 18, 0, Math.PI*2); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(0, -45); ctx.stroke();
+        if (gameActive && dist < radioStation.size + 40) {
+            showContact();
+        }
+
+        ctx.save();
+        ctx.translate(sx, sy);
+
+        radioStation.rot += 0.005;
+        ctx.rotate(radioStation.rot);
+
+        ctx.fillStyle = "#222";
+        ctx.strokeStyle = "#3dfc3d";
+        ctx.lineWidth = 2;
+
+        ctx.fillRect(-60, -5, 120, 10);
+        ctx.strokeRect(-60, -5, 120, 10);
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 18, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -45);
+        ctx.stroke();
+
         radioStation.pulse += 0.04;
+
         const pSize = (radioStation.pulse % 1) * 90;
-        ctx.beginPath(); ctx.arc(0, -45, pSize, -Math.PI/2-0.5, -Math.PI/2+0.5);
+
+        ctx.beginPath();
+        ctx.arc(0, -45, pSize, -Math.PI / 2 - 0.5, -Math.PI / 2 + 0.5);
         ctx.strokeStyle = `rgba(61, 252, 61, ${1 - (radioStation.pulse % 1)})`;
-        ctx.stroke(); ctx.restore();
-        ctx.fillStyle = "#fff"; ctx.font = "8px 'Press Start 2P'"; ctx.textAlign="center";
+        ctx.stroke();
+
+        ctx.restore();
+
+        ctx.fillStyle = "#fff";
+        ctx.font = "8px 'Press Start 2P'";
+        ctx.textAlign = "center";
         ctx.fillText("RADIO_STATION_ALPHA", sx, sy + 100);
     }
 
     function drawPlanet(p) {
-        const sx = p.x - camera.x; const sy = p.y - camera.y;
-        const dist = Math.sqrt((player.x - p.x)**2 + (player.y - p.y)**2);
-        if(gameActive && dist < p.size + 30) showProject(p);
+        const sx = p.x - camera.x;
+        const sy = p.y - camera.y;
+        const dist = Math.sqrt((player.x - p.x) ** 2 + (player.y - p.y) ** 2);
 
-        ctx.save(); ctx.translate(sx, sy);
+        if (gameActive && dist < p.size + 30) {
+            showProject(p);
+        }
+
+        ctx.save();
+        ctx.translate(sx, sy);
+
         const outerGlow = ctx.createRadialGradient(0, 0, p.size, 0, 0, p.size * 1.4);
-        outerGlow.addColorStop(0, p.color); outerGlow.addColorStop(1, 'transparent');
-        ctx.fillStyle = outerGlow;
-        ctx.beginPath(); ctx.arc(0, 0, p.size * 1.4, 0, Math.PI * 2); ctx.fill();
+        outerGlow.addColorStop(0, p.color);
+        outerGlow.addColorStop(1, 'transparent');
 
-        ctx.save(); ctx.rotate(p.rotation); p.rotation += p.rotationSpeed;
-        ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(0, 0, p.size, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = outerGlow;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size * 1.4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.save();
+        ctx.rotate(p.rotation);
+        p.rotation += p.rotationSpeed;
+
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.fillStyle = "rgba(0,0,0,0.12)";
         p.internalSpots.forEach(spot => {
-            ctx.beginPath(); ctx.arc(spot.x * p.size, spot.y * p.size, spot.r * p.size, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath();
+            ctx.arc(spot.x * p.size, spot.y * p.size, spot.r * p.size, 0, Math.PI * 2);
+            ctx.fill();
         });
+
         ctx.restore();
 
-        const shading = ctx.createRadialGradient(-p.size*0.3, -p.size*0.3, p.size*0.1, 0, 0, p.size);
-        shading.addColorStop(0, "rgba(255,255,255,0.2)"); shading.addColorStop(1, "rgba(0,0,0,0.5)");
-        ctx.fillStyle = shading; ctx.beginPath(); ctx.arc(0, 0, p.size, 0, Math.PI * 2); ctx.fill();
+        const shading = ctx.createRadialGradient(-p.size * 0.3, -p.size * 0.3, p.size * 0.1, 0, 0, p.size);
+        shading.addColorStop(0, "rgba(255,255,255,0.2)");
+        shading.addColorStop(1, "rgba(0,0,0,0.5)");
 
-        if(p.rings) {
-            ctx.strokeStyle = "rgba(200,200,200,0.25)"; ctx.lineWidth = 4;
-            ctx.beginPath(); ctx.ellipse(0, 0, p.size * 2.3, p.size * 0.7, 0.4, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = shading;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (p.rings) {
+            ctx.strokeStyle = "rgba(200,200,200,0.25)";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, p.size * 2.3, p.size * 0.7, 0.4, 0, Math.PI * 2);
+            ctx.stroke();
         }
+
         ctx.restore();
-        ctx.fillStyle = "#3dfc3d"; ctx.font = "8px 'Press Start 2P'"; ctx.textAlign="center";
+
+        ctx.fillStyle = "#3dfc3d";
+        ctx.font = "8px 'Press Start 2P'";
+        ctx.textAlign = "center";
         ctx.fillText(p.name, sx, sy + p.size + 50);
     }
 
     function drawPlayer(x, y, angle) {
-        ctx.save(); ctx.translate(x, y); ctx.rotate(angle);
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+
         if (keys['KeyW'] && !modalOpen) {
-            ctx.beginPath(); ctx.fillStyle = "rgba(61, 252, 61, 0.6)";
-            ctx.moveTo(-8, 20); ctx.lineTo(0, 60); ctx.lineTo(8, 20); ctx.fill();
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(61, 252, 61, 0.6)";
+            ctx.moveTo(-8, 20);
+            ctx.lineTo(0, 60);
+            ctx.lineTo(8, 20);
+            ctx.fill();
         }
-        ctx.strokeStyle = "#3dfc3d"; ctx.fillStyle = "#0a1a0a"; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.moveTo(0, -35); ctx.lineTo(-25, 20); ctx.lineTo(-10, 15); ctx.lineTo(10, 15); ctx.lineTo(25, 20); ctx.closePath();
-        ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.ellipse(0, -5, 14, 16, 0, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 40, 0, 0.9)"; ctx.fill(); ctx.stroke();
-        ctx.save(); ctx.translate(0, -5); ctx.fillStyle = "#3dfc3d"; ctx.beginPath(); ctx.arc(0, 2, 7, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.moveTo(-6, -2); ctx.lineTo(-8, -10); ctx.lineTo(-2, -4); ctx.moveTo(6, -2); ctx.lineTo(8, -10); ctx.lineTo(2, -4); ctx.fill();
-        ctx.strokeStyle = "#3dfc3d"; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(-4, -6); ctx.lineTo(-10, -18); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(4, -6); ctx.lineTo(10, -18); ctx.stroke();
-        ctx.fillStyle = "#fff"; ctx.fillRect(-3, 1, 2, 2); ctx.fillRect(1, 1, 2, 2);
-        ctx.restore(); ctx.restore();
+
+        ctx.strokeStyle = "#3dfc3d";
+        ctx.fillStyle = "#0a1a0a";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(0, -35);
+        ctx.lineTo(-25, 20);
+        ctx.lineTo(-10, 15);
+        ctx.lineTo(10, 15);
+        ctx.lineTo(25, 20);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(0, -5, 14, 16, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 40, 0, 0.9)";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(0, -5);
+
+        ctx.fillStyle = "#3dfc3d";
+        ctx.beginPath();
+        ctx.arc(0, 2, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(-6, -2);
+        ctx.lineTo(-8, -10);
+        ctx.lineTo(-2, -4);
+        ctx.moveTo(6, -2);
+        ctx.lineTo(8, -10);
+        ctx.lineTo(2, -4);
+        ctx.fill();
+
+        ctx.strokeStyle = "#3dfc3d";
+        ctx.lineWidth = 1;
+
+        ctx.beginPath();
+        ctx.moveTo(-4, -6);
+        ctx.lineTo(-10, -18);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(4, -6);
+        ctx.lineTo(10, -18);
+        ctx.stroke();
+
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(-3, 1, 2, 2);
+        ctx.fillRect(1, 1, 2, 2);
+
+        ctx.restore();
+        ctx.restore();
     }
 
     function gameLoop() {
         if (!gameActive) return;
-        ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        if (collisionCooldown > 0) collisionCooldown--;
+
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        if (collisionCooldown > 0) {
+            collisionCooldown--;
+        }
 
         if (!modalOpen) {
             if (keys['KeyW']) {
                 player.vx += Math.sin(player.angle) * player.speed;
                 player.vy -= Math.cos(player.angle) * player.speed;
             }
+
             if (keys['KeyA']) player.angle -= 0.06;
             if (keys['KeyD']) player.angle += 0.06;
-            player.vx *= player.friction; player.vy *= player.friction;
-            player.x += player.vx; player.y += player.vy;
+
+            player.vx *= player.friction;
+            player.vy *= player.friction;
+
+            player.x += player.vx;
+            player.y += player.vy;
+
             player.x = Math.max(0, Math.min(WORLD_SIZE, player.x));
             player.y = Math.max(0, Math.min(WORLD_SIZE, player.y));
         }
@@ -987,18 +1548,22 @@
         camera.y += (player.y - canvas.height / 2 - camera.y) * 0.1;
 
         stars.forEach(s => {
-            s.phase += s.blinkSpeed; const sx = s.x - camera.x; const sy = s.y - camera.y;
-            if(sx >= 0 && sx <= canvas.width && sy >= 0 && sy <= canvas.height) {
+            s.phase += s.blinkSpeed;
+
+            const sx = s.x - camera.x;
+            const sy = s.y - camera.y;
+
+            if (sx >= 0 && sx <= canvas.width && sy >= 0 && sy <= canvas.height) {
                 ctx.globalAlpha = 0.3 + Math.abs(Math.sin(s.phase)) * 0.7;
-                ctx.fillStyle = "white"; ctx.fillRect(sx, sy, s.size, s.size);
+                ctx.fillStyle = "white";
+                ctx.fillRect(sx, sy, s.size, s.size);
             }
         });
-        // Generar ocasionalmente una estrella fugaz
+
         if (Math.random() < 0.01) {
             spawnShootingStar();
         }
 
-        // Actualizar y dibujar estrellas fugaces
         for (let i = shootingStars.length - 1; i >= 0; i--) {
             const s = shootingStars[i];
 
@@ -1018,44 +1583,88 @@
             ctx.moveTo(sx, sy);
             ctx.lineTo(sx - s.vx * 6, sy - s.vy * 6);
             ctx.stroke();
+
             ctx.restore();
 
             if (
                 s.life <= 0 ||
-                sx < -200 || sx > canvas.width + 200 ||
-                sy < -200 || sy > canvas.height + 200
+                sx < -200 ||
+                sx > canvas.width + 200 ||
+                sy < -200 ||
+                sy > canvas.height + 200
             ) {
                 shootingStars.splice(i, 1);
             }
         }
+
         ctx.globalAlpha = 1.0;
 
         asteroids.forEach(a => {
-            a.x += a.vx; a.y += a.vy; a.rot += a.rotSpeed;
-            const sx = a.x - camera.x; const sy = a.y - camera.y;
-            ctx.save(); ctx.translate(sx, sy); ctx.rotate(a.rot);
-            ctx.beginPath(); a.points.forEach((pt, i) => { if(i===0) ctx.moveTo(pt.x*a.size, pt.y*a.size); else ctx.lineTo(pt.x*a.size, pt.y*a.size); });
-            ctx.closePath(); ctx.strokeStyle = "#444"; ctx.stroke(); ctx.restore();
+            a.x += a.vx;
+            a.y += a.vy;
+            a.rot += a.rotSpeed;
+
+            const sx = a.x - camera.x;
+            const sy = a.y - camera.y;
+
+            ctx.save();
+            ctx.translate(sx, sy);
+            ctx.rotate(a.rot);
+
+            ctx.beginPath();
+            a.points.forEach((pt, i) => {
+                if (i === 0) {
+                    ctx.moveTo(pt.x * a.size, pt.y * a.size);
+                } else {
+                    ctx.lineTo(pt.x * a.size, pt.y * a.size);
+                }
+            });
+
+            ctx.closePath();
+            ctx.strokeStyle = "#444";
+            ctx.stroke();
+
+            ctx.restore();
         });
 
         planets.forEach(p => drawPlanet(p));
+
         drawRadioStation();
         drawPlayer(player.x - camera.x, player.y - camera.y, player.angle);
 
         posDisplay.innerText = `X: ${Math.floor(player.x).toString().padStart(4, '0')} Y: ${Math.floor(player.y).toString().padStart(4, '0')}`;
 
-        const ms = 130; const mx = canvas.width - ms - 20; const my = canvas.height - ms - 20;
-        ctx.strokeStyle = "#3dfc3d"; ctx.strokeRect(mx, my, ms, ms);
-        ctx.fillStyle = "rgba(0,15,0,0.85)"; ctx.fillRect(mx, my, ms, ms);
+        const ms = 130;
+        const mx = canvas.width - ms - 20;
+        const my = canvas.height - ms - 20;
+
+        ctx.strokeStyle = "#3dfc3d";
+        ctx.strokeRect(mx, my, ms, ms);
+
+        ctx.fillStyle = "rgba(0,15,0,0.85)";
+        ctx.fillRect(mx, my, ms, ms);
+
         const sc = ms / WORLD_SIZE;
-        ctx.fillStyle = "#fff"; ctx.fillRect(mx + player.x*sc, my + player.y*sc, 2, 2);
-        planets.forEach(p => { ctx.fillStyle = p.color; ctx.fillRect(mx + p.x*sc, my + p.y*sc, 4, 4); });
-        ctx.fillStyle = "#3dfc3d"; if(Math.floor(Date.now()/400)%2===0) ctx.fillRect(mx + radioStation.x*sc, my + radioStation.y*sc, 5, 5);
+
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(mx + player.x * sc, my + player.y * sc, 2, 2);
+
+        planets.forEach(p => {
+            ctx.fillStyle = p.color;
+            ctx.fillRect(mx + p.x * sc, my + p.y * sc, 4, 4);
+        });
+
+        ctx.fillStyle = "#3dfc3d";
+
+        if (Math.floor(Date.now() / 400) % 2 === 0) {
+            ctx.fillRect(mx + radioStation.x * sc, my + radioStation.y * sc, 5, 5);
+        }
 
         requestAnimationFrame(gameLoop);
     }
 
     window.addEventListener('resize', resize);
 </script>
+
 </body>
 </html>
