@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -377,7 +377,7 @@
             text-align: right;
         }
 
-        /* Modal de proyecto grande - Vista tipo ficha */
+        /* Large project modal - Profile-style view */
         .project-modal-layout {
             width: 94%;
             max-width: 1250px;
@@ -701,15 +701,15 @@
 <header class="main-nav-header">
     <div class="flex items-center gap-4">
         <div class="logo-box">
-            <img src="LogoNinePaws2.png" alt="Logo Nine Paws" class="logo-green">
+            <img src="LogoNinePaws2.png" alt="Nine Paws Logo" class="logo-green">
         </div>
         <span class="text-[8px] hidden md:block">KENNETH GALVEZ</span>
     </div>
 
     <nav class="flex gap-2">
-        <div class="nav-link" onclick="handleNav('inicio')">INICIO</div>
-        <div class="nav-link" onclick="handleNav('proyectos')">PROYECTOS</div>
-        <div class="nav-link" onclick="handleNav('contacto')">CONTACTO</div>
+        <div class="nav-link" onclick="handleNav('home')">HOME</div>
+        <div class="nav-link" onclick="handleNav('projects')">PROJECTS</div>
+        <div class="nav-link" onclick="handleNav('contact')">CONTACT</div>
     </nav>
 
     <div class="text-[6px] opacity-40 hidden md:block">STATUS: ONLINE</div>
@@ -727,18 +727,18 @@
 
         <div class="screen screen-bio">
             <div class="screen-header">
-                <span>SOBRE_MI.LOG</span>
+                <span>ABOUT_ME.LOG</span>
                 <span>v1.0.4</span>
             </div>
 
             <div class="p-3">
-                <p class="text-white mb-2 underline text-[7px]">BIO_PILOTO</p>
+                <p class="text-white mb-2 underline text-[7px]">PILOT_BIO</p>
 
                 <div class="bio-scroll">
                     <div class="typewriter">
-                        Soy Kenneth Eduardo Gálvez Requena, Game Designer y Game Developer. Actualmente estoy estudiando una maestría en Game Design en Universal Arts School.
-                        Desde siempre me ha apasionado escribir mundos e historias, y uno de mis mayores objetivos es convertir esa pasión en experiencias de juego nuevas e interesantes. Me interesa crear videojuegos que puedan ofrecer experiencias memorables a los jugadores.
-                        Siempre trato de aprender algo nuevo en cada experiencia, ya que considero que el crecimiento constante es una parte fundamental de este camino.
+                        I am Kenneth Eduardo Gálvez Requena, a Game Designer and Game Developer. I am currently pursuing a master's degree in Game Design at Universal Arts School.
+                        I have always been passionate about writing worlds and stories, and one of my greatest goals is to turn that passion into new and engaging game experiences. I am interested in creating video games that can offer memorable experiences to players.
+                        I always try to learn something new from every experience, as I believe that continuous growth is a fundamental part of this journey.
                     </div>
                 </div>
             </div>
@@ -746,7 +746,7 @@
 
         <div class="screen screen-main">
             <div class="screen-header">
-                <span>PROYECTOS_CAM_01</span>
+                <span>PROJECTS_CAM_01</span>
                 <span>REC ●</span>
             </div>
 
@@ -757,12 +757,12 @@
 
         <div class="screen screen-stats">
             <div class="screen-header">
-                <span>SISTEMAS</span>
+                <span>SYSTEMS</span>
                 <span>LOG_SYNC</span>
             </div>
 
             <div class="p-3 text-[7px]">
-                <p class="mb-2">CAPACIDADES:</p>
+                <p class="mb-2">SKILLS:</p>
 
                 <div class="space-y-1">
                     <div class="flex justify-between">
@@ -816,8 +816,8 @@
         </div>
 
         <div class="screen screen-bottom flex flex-col items-center justify-center">
-            <p class="text-[7px] mb-2 opacity-50">MOTOR DE HIPERSALTO CARGADO</p>
-            <h2 class="glitch-text text-[10px] text-white tracking-widest">PRESIONA [ESPACIO] PARA VOLAR</h2>
+            <p class="text-[7px] mb-2 opacity-50">HYPERDRIVE CHARGED</p>
+            <h2 class="glitch-text text-[10px] text-white tracking-widest">PRESS [SPACE] TO FLY</h2>
         </div>
 
     </div>
@@ -841,13 +841,13 @@
 
 <div id="project-list-modal" class="modal">
     <h2 class="text-white text-[12px] mb-4 uppercase border-b border-green-400 pb-2">
-        ARCHIVO_PROYECTOS
+        PROJECT_ARCHIVE
     </h2>
 
     <div id="project-container"></div>
 
     <button onclick="closeModals()" class="modal-btn w-full mt-4 !bg-transparent !text-green-400 border border-green-400">
-        CERRAR
+        CLOSE
     </button>
 </div>
 
@@ -855,30 +855,30 @@
     <div class="project-grid">
 
         <div class="project-info">
-            <h2 id="p-title" class="project-title">NOMBRE DEL PROYECTO</h2>
+            <h2 id="p-title" class="project-title">PROJECT NAME</h2>
 
             <div id="p-desc" class="project-desc">
-                Cargando bitácora de desarrollo...
+                Loading development log...
             </div>
 
             <div class="project-actions">
                 <a id="p-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn">
-                    IR AL PROYECTO
+                    VIEW PROJECT
                 </a>
 
                 <button onclick="backToProjectList()" class="modal-btn !bg-transparent !text-green-400 border border-green-400">
-                    VOLVER
+                    BACK
                 </button>
             </div>
         </div>
 
         <div class="project-media-column">
             <div id="p-image" class="project-image-frame">
-                <span class="text-[8px] text-green-400">[IMAGEN DEL PROYECTO]</span>
+                <span class="text-[8px] text-green-400">[PROJECT IMAGE]</span>
             </div>
 
             <div id="p-video" class="project-video-frame">
-                <span class="project-video-empty">[VIDEO DEL PROYECTO]</span>
+                <span class="project-video-empty">[PROJECT VIDEO]</span>
             </div>
         </div>
 
@@ -886,24 +886,24 @@
 </div>
 
 <div id="contact-modal" class="modal">
-    <h2 class="text-white text-[12px] mb-4 uppercase">ESTACIÓN DE RADIO</h2>
-    <p class="text-[6px] mb-4 text-green-600">CANAL ABIERTO // FRECUENCIA: 144.900MHz</p>
+    <h2 class="text-white text-[12px] mb-4 uppercase">RADIO STATION</h2>
+    <p class="text-[6px] mb-4 text-green-600">OPEN CHANNEL // FREQUENCY: 144.900MHz</p>
 
     <div class="space-y-4 mb-6">
-        <input id="contact-email" type="email" class="contact-input" placeholder="tu_firma@email.com">
-        <input id="contact-subject" type="text" class="contact-input" placeholder="Asunto del mensaje">
-        <textarea id="contact-message" class="contact-input h-20" placeholder="Escribe tu mensaje..."></textarea>
+        <input id="contact-email" type="email" class="contact-input" placeholder="your_address@email.com">
+        <input id="contact-subject" type="text" class="contact-input" placeholder="Message subject">
+        <textarea id="contact-message" class="contact-input h-20" placeholder="Write your message..."></textarea>
     </div>
 
     <div class="flex gap-4 mb-4">
-        <button class="modal-btn flex-1" onclick="sendContactEmail()">ENVIAR</button>
+        <button class="modal-btn flex-1" onclick="sendContactEmail()">SEND</button>
         <button onclick="closeModals()" class="modal-btn flex-1 !bg-transparent !text-green-400 border border-green-400">
-            CERRAR
+            CLOSE
         </button>
     </div>
 
     <div class="border-t border-green-900 pt-4">
-        <p class="text-[7px] mb-3 text-white">ENLACES_EXTERNOS</p>
+        <p class="text-[7px] mb-3 text-white">EXTERNAL_LINKS</p>
 
         <div class="flex gap-3">
             <a
@@ -982,10 +982,10 @@
             name: "Potassium Shot",
             color: "#2d5a27",
             size: 90,
-            desc: "Un empresario millonario ha comenzado a deforestar la selva para explotar todos los recursos naturales a su alcance. El jugador controla a un mono que, al presenciar la destrucción de su hogar, decide defenderlo usando su mejor habilidad: lanzar bananas contra todo aquel que amenace su territorio.",
+            desc: "A millionaire businessman has begun deforesting the jungle to exploit every natural resource within his reach. The player controls a monkey who, after witnessing the destruction of his home, decides to defend it using his greatest skill: throwing bananas at anyone who threatens his territory.",
             tools: "Unity / PC",
             role: "Game Developer / Game Designer",
-            genre: "Shooter / Acción",
+            genre: "Shooter / Action",
             link: "https://kenneth910.itch.io/potassium-shot",
             details: 6,
             image: "potassium_shot.png",
@@ -996,10 +996,10 @@
             color: "#5a2d27",
             size: 140,
             rings: true,
-            desc: "En un mundo helado donde la naturaleza y la tecnología chocan por sobrevivir, un accidente transforma a Shizul en un ser con partes robóticas. Ahora deberá enfrentarse a su nueva identidad y escalar hacia el misterio de una piedra capaz de cambiar el destino de su mundo.",
+            desc: "In a frozen world where nature and technology clash for survival, an accident transforms Shizul into a being with robotic parts. Now, he must confront his new identity and climb toward the mystery of a stone capable of changing the fate of his world.",
             tools: "Unity / PC",
             role: "Game Developer / Game Designer",
-            genre: "Aventura narrativa / Plataformas / Puzzle",
+            genre: "Narrative Adventure / Platformer / Puzzle",
             link: "https://kenneth910.itch.io/eco-de-acero",
             details: 9,
             image: "eco_de_acero.png",
@@ -1009,7 +1009,7 @@
             name: "Guamazo Libre",
             color: "#27485a",
             size: 80,
-            desc: "Lo peor que pudiste haber hecho fue dejar plantada a tu traída. Ahora, secuestrado por tu suegro marero, deberás luchar por tu vida. Sumérgete en las profundidades de la Zona 18 de la Ciudad de Guatemala y demuestra qué tan chispudo eres.",
+            desc: "The worst thing you could have done was stand up your girlfriend. Now, kidnapped by your gang-member father-in-law, you must fight for your life. Dive into the depths of Zone 18 in Guatemala City and prove just how sharp and resourceful you are.",
             tools: "Unity / PC",
             role: "Game Designer",
             genre: "Arcade / Button Masher",
@@ -1023,10 +1023,10 @@
             color: "#48275a",
             size: 100,
             rings: true,
-            desc: "Tae es un niño huérfano nacido en la isla de Everly. Trabaja en un huerto por una paga miserable, intentando ayudar a su familia adoptiva. Desde siempre ha soñado con abandonar la isla en busca de una vida mejor, inspirado por los barcos que parten del puerto. Su oportunidad aparece cuando una banda de piratas ataca inesperadamente.",
+            desc: "Tae is an orphan boy born on Everly Island. He works in an orchard for miserable pay, trying to help his adoptive family. He has always dreamed of leaving the island in search of a better life, inspired by the ships departing from the harbor. His opportunity appears when a band of pirates attacks unexpectedly.",
             tools: "GameMaker / PC",
             role: "Game Developer / Game Designer",
-            genre: "Bullet Hell / Acción",
+            genre: "Bullet Hell / Action",
             link: "https://kenneth910.itch.io/sueo-de-pirata",
             details: 7,
             image: "sueño_de_pirata.png",
@@ -1037,10 +1037,10 @@
             color: "#3d2d5a",
             size: 115,
             rings: true,
-            desc: "Es el año 2050, el planeta Tierra se encuentra en una crisis de recursos como nunca antes se había visto. El gobierno de varios países, ante esta situación, apostó todo por el proyecto Swappers: una iniciativa que consiste en desarrollar y financiar un arca espacial capaz de transportar a miles de personas hacia un sitio donde la vida pueda prosperar. Todo iba de acuerdo con lo planeado; el único inconveniente era la cantidad de personas que tendrían la oportunidad de abordar. Siguiendo el protocolo y con el fin de evitar el caos, se decidió retener a un puñado de personas para evaluar y clasificar sus capacidades y determinar su futuro.",
+            desc: "It is the year 2050, and planet Earth is facing an unprecedented resource crisis. In response, the governments of several countries placed all their hopes in Project Swappers: an initiative to develop and fund a space ark capable of transporting thousands of people to a place where life could thrive. Everything was going according to plan; the only issue was how many people would have the opportunity to board. Following protocol and in order to prevent chaos, a small group of people was detained so their abilities could be evaluated and classified, determining their future.",
             tools: "Unity / PC",
             role: "Game Developer / Game Designer",
-            genre: "Puzzle Narrativa",
+            genre: "Narrative Puzzle",
             link: "https://kenneth910.itch.io/swappers",
             details: 8,
             image: "swapper.png",
@@ -1051,10 +1051,10 @@
             color: "#00e0c6",
             size: 115,
             rings: true,
-            desc: "Astraeon está colapsando desde su interior. En su núcleo, un microagujero negro distorsiona la energía del planeta, corrompe su fauna y altera la realidad. Juegas como Kaelaris, un explorador equipado con un dispositivo capaz de absorber fragmentos de resonancia inestable conocidos como Elementos Xenocore. En cada descenso, deberás luchar, absorber energía, adaptar tus habilidades y avanzar hacia el centro del planeta para descubrir el origen de la corrupción.",
+            desc: "Astraeon is collapsing from within. At its core, a microscopic black hole distorts the planet's energy, corrupts its wildlife, and alters reality. You play as Kaelaris, an explorer equipped with a device capable of absorbing fragments of unstable resonance known as Xenocore Elements. With each descent, you must fight, absorb energy, adapt your abilities, and advance toward the center of the planet to uncover the source of the corruption.",
             tools: "Unity / Windows",
             role: "Level Designer",
-            genre: "Roguelite de Acción",
+            genre: "Action Roguelite",
             link: "https://fox-stare-studio.itch.io/xenocore",
             details: 8,
             image: "xenocore.png",
@@ -1070,11 +1070,11 @@
     const shootingStars = [];
 
     function handleNav(option) {
-        if (option === 'inicio') {
+        if (option === 'home') {
             goHome();
-        } else if (option === 'proyectos') {
+        } else if (option === 'projects') {
             showProjectListDirectly();
-        } else if (option === 'contacto') {
+        } else if (option === 'contact') {
             showContact();
         }
     }
@@ -1104,18 +1104,18 @@
                     ${
                         p.image
                         ? `<img src="${p.image}" alt="${p.name}">`
-                        : `<div class="project-card-placeholder">[SIN IMAGEN]</div>`
+                        : `<div class="project-card-placeholder">[NO IMAGE]</div>`
                     }
                 </div>
 
                 <div class="project-card-info">
                     <div class="project-card-title">${p.name}</div>
                     <div class="project-card-meta">
-                        SISTEMA: ${p.tools}<br>
-                        CLASE: ${p.genre}<br>
+                        SYSTEM: ${p.tools}<br>
+                        CLASS: ${p.genre}<br>
                         STATUS: READY
                     </div>
-                    <div class="project-card-open">ABRIR ></div>
+                    <div class="project-card-open">OPEN ></div>
                 </div>
             `;
 
@@ -1136,12 +1136,12 @@
         const message = messageInput.value.trim();
 
         if (!from || !subject || !message) {
-            alert('Completa todos los campos antes de enviar.');
+            alert('Please complete all fields before sending.');
             return;
         }
 
-        const fullSubject = `Contacto Portfolio - ${subject}`;
-        const body = `Correo de contacto: ${from}\n\nMensaje:\n${message}`;
+        const fullSubject = `Portfolio Contact - ${subject}`;
+        const body = `Contact email: ${from}\n\nMessage:\n${message}`;
         const mailtoLink = `mailto:kenichi.galvez@gmail.com?subject=${encodeURIComponent(fullSubject)}&body=${encodeURIComponent(body)}`;
 
         window.location.href = mailtoLink;
@@ -1269,23 +1269,23 @@
 
         document.getElementById('p-desc').innerHTML = `
             <div class="project-summary-card">
-                <div class="project-summary-label">Descripción:</div>
+                <div class="project-summary-label">Description:</div>
                 <div class="project-summary-text">${p.desc}</div>
             </div>
 
             <div class="project-stats-grid">
                 <div class="project-stat-card">
-                    <div class="project-stat-label">Herramientas:</div>
+                    <div class="project-stat-label">Tools:</div>
                     <div class="project-stat-value">${p.tools}</div>
                 </div>
 
                 <div class="project-stat-card">
-                    <div class="project-stat-label">Rol en el proyecto:</div>
+                    <div class="project-stat-label">Role in the project:</div>
                     <div class="project-stat-value">${p.role}</div>
                 </div>
 
                 <div class="project-stat-card">
-                    <div class="project-stat-label">Género:</div>
+                    <div class="project-stat-label">Genre:</div>
                     <div class="project-stat-value">${p.genre}</div>
                 </div>
             </div>
@@ -1296,17 +1296,17 @@
         const imageContainer = document.getElementById('p-image');
         imageContainer.innerHTML = p.image
             ? `<img src="${p.image}" alt="${p.name}">`
-            : `<span class="text-[8px] text-green-400">[SIN IMAGEN]</span>`;
+            : `<span class="text-[8px] text-green-400">[NO IMAGE]</span>`;
 
         const videoContainer = document.getElementById('p-video');
         videoContainer.innerHTML = p.video
             ? `
                 <video controls muted playsinline>
                     <source src="${p.video}" type="video/mp4">
-                    Tu navegador no soporta video HTML5.
+                    Your browser does not support HTML5 video.
                 </video>
             `
-            : `<span class="project-video-empty">[SIN VIDEO DISPONIBLE]</span>`;
+            : `<span class="project-video-empty">[NO VIDEO AVAILABLE]</span>`;
 
         projectListModal.style.display = 'none';
         projectModal.style.display = 'block';
